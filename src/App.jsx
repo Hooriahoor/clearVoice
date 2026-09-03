@@ -416,7 +416,10 @@ ${item.translations?.[language] || ""}
       // Send ONLY the language currently selected by the user.
       formData.append("target_language", language);
 
-      const response = await fetch("http://127.0.0.1:5000/api/transcribe", {
+      const API_BASE_URL =
+        import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000";
+
+      const response = await fetch(`${API_BASE_URL}/api/transcribe`, {
         method: "POST",
         body: formData,
       });
